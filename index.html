@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Excuse Generator - Intelligent Excuse Creation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <div class="logo-icon">🤖</div>
+                        <h1>AI Excuse Generator</h1>
+                    </div>
+                    <nav class="nav">
+                        <a href="#generator" class="nav-link active">Generator</a>
+                        <a href="#analytics" class="nav-link">Analytics</a>
+                        <a href="#about" class="nav-link">About</a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <div class="container">
+                <!-- Hero Section -->
+                <section class="hero">
+                    <div class="hero-content">
+                        <h2 class="hero-title">Intelligent Excuse Generation</h2>
+                        <p class="hero-subtitle">
+                            Powered by advanced AI algorithms to create contextually appropriate and believable excuses
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Generator Section -->
+                <section id="generator" class="generator-section">
+                    <div class="generator-card">
+                        <div class="card-header">
+                            <h3>Generate Your Excuse</h3>
+                            <p>Select parameters to customize your AI-generated excuse</p>
+                        </div>
+                        
+                        <div class="generator-form">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="category">Category</label>
+                                    <select id="category" class="form-select">
+                                        <option value="work">Work/Professional</option>
+                                        <option value="school">School/Academic</option>
+                                        <option value="social">Social Events</option>
+                                        <option value="family">Family Obligations</option>
+                                        <option value="health">Health Related</option>
+                                        <option value="transportation">Transportation</option>
+                                        <option value="technology">Technology Issues</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="urgency">Urgency Level</label>
+                                    <select id="urgency" class="form-select">
+                                        <option value="low">Low</option>
+                                        <option value="medium">Medium</option>
+                                        <option value="high">High</option>
+                                        <option value="emergency">Emergency</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="tone">Tone</label>
+                                    <select id="tone" class="form-select">
+                                        <option value="professional">Professional</option>
+                                        <option value="casual">Casual</option>
+                                        <option value="apologetic">Apologetic</option>
+                                        <option value="confident">Confident</option>
+                                        <option value="humorous">Humorous</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="believability">Believability</label>
+                                    <div class="slider-container">
+                                        <input type="range" id="believability" min="1" max="10" value="7" class="slider">
+                                        <div class="slider-labels">
+                                            <span>Creative</span>
+                                            <span>Realistic</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="context">Additional Context (Optional)</label>
+                                <textarea id="context" placeholder="Provide any specific details or context..." class="form-textarea"></textarea>
+                            </div>
+
+                            <button id="generateBtn" class="generate-btn">
+                                <span class="btn-text">Generate Excuse</span>
+                                <div class="btn-loader hidden">
+                                    <div class="spinner"></div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Results Section -->
+                    <div id="resultsSection" class="results-section hidden">
+                        <div class="results-card">
+                            <div class="results-header">
+                                <h3>Generated Excuse</h3>
+                                <div class="results-actions">
+                                    <button id="copyBtn" class="action-btn">
+                                        <span>📋</span>
+                                        Copy
+                                    </button>
+                                    <button id="regenerateBtn" class="action-btn">
+                                        <span>🔄</span>
+                                        Regenerate
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="excuse-output">
+                                <div id="excuseText" class="excuse-text"></div>
+                            </div>
+
+                            <div class="excuse-metrics">
+                                <div class="metric">
+                                    <span class="metric-label">Believability Score</span>
+                                    <div class="metric-bar">
+                                        <div id="believabilityBar" class="metric-fill"></div>
+                                    </div>
+                                    <span id="believabilityScore" class="metric-value">0%</span>
+                                </div>
+                                
+                                <div class="metric">
+                                    <span class="metric-label">Creativity Index</span>
+                                    <div class="metric-bar">
+                                        <div id="creativityBar" class="metric-fill"></div>
+                                    </div>
+                                    <span id="creativityScore" class="metric-value">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Analytics Section -->
+                <section id="analytics" class="analytics-section">
+                    <div class="section-header">
+                        <h3>Usage Analytics</h3>
+                        <p>Insights from AI-generated excuses</p>
+                    </div>
+                    
+                    <div class="analytics-grid">
+                        <div class="analytics-card">
+                            <div class="analytics-icon">📊</div>
+                            <div class="analytics-content">
+                                <h4>Total Excuses Generated</h4>
+                                <div class="analytics-number" id="totalExcuses">0</div>
+                            </div>
+                        </div>
+                        
+                        <div class="analytics-card">
+                            <div class="analytics-icon">🎯</div>
+                            <div class="analytics-content">
+                                <h4>Average Believability</h4>
+                                <div class="analytics-number" id="avgBelievability">0%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="analytics-card">
+                            <div class="analytics-icon">🏆</div>
+                            <div class="analytics-content">
+                                <h4>Most Popular Category</h4>
+                                <div class="analytics-text" id="popularCategory">Work</div>
+                            </div>
+                        </div>
+                        
+                        <div class="analytics-card">
+                            <div class="analytics-icon">⚡</div>
+                            <div class="analytics-content">
+                                <h4>AI Response Time</h4>
+                                <div class="analytics-number" id="responseTime">0.8s</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <h4>Category Distribution</h4>
+                        <div class="chart" id="categoryChart">
+                            <div class="chart-bar" data-category="work" style="height: 45%">
+                                <span class="bar-label">Work</span>
+                                <span class="bar-value">45%</span>
+                            </div>
+                            <div class="chart-bar" data-category="school" style="height: 25%">
+                                <span class="bar-label">School</span>
+                                <span class="bar-value">25%</span>
+                            </div>
+                            <div class="chart-bar" data-category="social" style="height: 15%">
+                                <span class="bar-label">Social</span>
+                                <span class="bar-value">15%</span>
+                            </div>
+                            <div class="chart-bar" data-category="health" style="height: 10%">
+                                <span class="bar-label">Health</span>
+                                <span class="bar-value">10%</span>
+                            </div>
+                            <div class="chart-bar" data-category="other" style="height: 5%">
+                                <span class="bar-label">Other</span>
+                                <span class="bar-value">5%</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- About Section -->
+                <section id="about" class="about-section">
+                    <div class="about-content">
+                        <h3>About the AI Excuse Generator</h3>
+                        <div class="about-grid">
+                            <div class="about-card">
+                                <div class="about-icon">🧠</div>
+                                <h4>Advanced AI Technology</h4>
+                                <p>Utilizes natural language processing and machine learning algorithms to generate contextually appropriate excuses based on multiple parameters.</p>
+                            </div>
+                            
+                            <div class="about-card">
+                                <div class="about-icon">🎯</div>
+                                <h4>Context-Aware Generation</h4>
+                                <p>Considers category, urgency, tone, and believability factors to create excuses that match your specific situation and requirements.</p>
+                            </div>
+                            
+                            <div class="about-card">
+                                <div class="about-icon">📈</div>
+                                <h4>Continuous Learning</h4>
+                                <p>The AI model continuously improves through usage patterns and feedback, enhancing the quality and relevance of generated excuses.</p>
+                            </div>
+                            
+                            <div class="about-card">
+                                <div class="about-icon">🔒</div>
+                                <h4>Privacy Focused</h4>
+                                <p>All processing happens locally in your browser. No personal data or generated excuses are stored or transmitted to external servers.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="methodology">
+                            <h4>AI Methodology</h4>
+                            <p>This application employs a sophisticated natural language generation system that combines:</p>
+                            <ul>
+                                <li><strong>Template-based Generation:</strong> Pre-defined structures for different excuse categories</li>
+                                <li><strong>Parameter Weighting:</strong> Dynamic adjustment based on user-selected criteria</li>
+                                <li><strong>Contextual Analysis:</strong> Processing of additional context to enhance relevance</li>
+                                <li><strong>Believability Scoring:</strong> Real-time assessment of excuse credibility</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p>&copy; 2024 AI Excuse Generator - Capstone Project</p>
+                    <p>Powered by Advanced Natural Language Processing</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
